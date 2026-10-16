@@ -2,16 +2,18 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import type { Report } from '../eventImportObjectSchema.ts';
+
 const cwd = path.dirname(fileURLToPath(import.meta.url));
 
-function readFile(filename) {
+function readFile(filename: string): string {
   const fullPathFilename = path.join(cwd, 'reports', filename);
 
   return fs.readFileSync(fullPathFilename).toString();
 }
 
 // Every report renders on the server from Camphoric's variables (DR-41).
-const reports = [
+const reports: Report[] = [
   {
     title: 'Lodging Report (Simple)',
     output: 'md',
@@ -64,4 +66,4 @@ const reports = [
   },
 ];
 
-export default reports.map((report) => ({ ...report, variables_source: 'server' }));
+export default reports.map((report): Report => ({ ...report, variables_source: 'server' }));

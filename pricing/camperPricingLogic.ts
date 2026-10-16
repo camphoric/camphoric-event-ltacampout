@@ -1,4 +1,5 @@
-import pricingValues from './pricing.js';
+import type { LodgingLookup, PricingLogicItem } from '../../eventImportObjectSchema.ts';
+import pricingValues from './pricing.ts';
 
 export const ageLookup = {
   65: '65 years old or older',
@@ -10,7 +11,7 @@ export const ageLookup = {
   4:  '0-4 years old',
 };
 
-export const agePricingTypes = {
+export const agePricingTypes: Record<'adult' | 'yadult' | 'child' | 'baby', string[]> = {
   adult: ['65 years old or older','50-64 years old','26-49 years old'],
   yadult: ['18-25 years old'],
   child: ['12-17 years old', '5-11 years old'],
@@ -20,8 +21,8 @@ export const agePricingTypes = {
 const defaultCamperAge = ageLookup[65];
 const camperAge = {var: ['camper.age', defaultCamperAge]};
 
-const getRates = (lodgingIds) => ({
-  'if': Object.keys(pricingValues).reduce((acc, key) => {
+const getRates = (lodgingIds: LodgingLookup) => ({
+  'if': Object.keys(pricingValues).reduce<unknown[]>((acc, key) => {
     const [ageKey, lodgingKey] = key.split('_');
 
     let lid;
@@ -37,7 +38,7 @@ const getRates = (lodgingIds) => ({
       {
         'and': [
           // age
-          { 'or': agePricingTypes[ageKey].map(a => (
+          { 'or': agePricingTypes[ageKey as keyof typeof agePricingTypes].map(a => (
             { '===': [a, camperAge] }
           )) },
           // lodging
@@ -48,7 +49,7 @@ const getRates = (lodgingIds) => ({
   }, []).concat([0]),
 });
 
-const totalSingleDay = (lodgingIds) => {
+const totalSingleDay = (lodgingIds: LodgingLookup) => {
 	const lid = lodgingIds.offsiteday.id;
 
   return {
@@ -63,7 +64,7 @@ const totalSingleDay = (lodgingIds) => {
   };
 };
 
-export default (lodgingIds) => [
+export default (lodgingIds: LodgingLookup): PricingLogicItem[] => [
   {
     var: 'tuition',
     exp: getRates(lodgingIds),

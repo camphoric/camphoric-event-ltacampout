@@ -1,6 +1,18 @@
-import { ageLookup } from './pricing/camperPricingLogic.js';
+import type { LodgingLookup, SampleRegistration } from '../eventImportObjectSchema.ts';
+import { ageLookup } from './pricing/camperPricingLogic.ts';
 
-const registrations = [
+// age, first name, last name, lodging, chore, and who they share lodging with
+type CamperRow = [
+  keyof typeof ageLookup, string, string, string, string, string?,
+];
+
+interface Household {
+  phone: string;
+  email: string;
+  campers: CamperRow[];
+}
+
+const registrations: Household[] = [
   {
     phone: '+15551235678',
     email: 'bobross123456@dontsend.com',
@@ -44,7 +56,7 @@ const registrations = [
   },
 ];
 
-function destructureCamper(c, email, phone, lodgingMap) {
+function destructureCamper(c: CamperRow, email: string, phone: string, lodgingMap: LodgingLookup) {
   const [
     age,
     first_name,
@@ -77,7 +89,7 @@ function destructureCamper(c, email, phone, lodgingMap) {
   };
 }
 
-function makeRegistration(reg, lodgingMap) {
+function makeRegistration(reg: Household, lodgingMap: LodgingLookup): SampleRegistration {
   return {
     'formData': {
       'campers': reg.campers.map(
@@ -104,7 +116,7 @@ function makeRegistration(reg, lodgingMap) {
   };
 }
 
-export default function makeRegistrations(lodgingMap) {
+export default function makeRegistrations(lodgingMap: LodgingLookup): SampleRegistration[] {
   return registrations.map(
     r => makeRegistration(r, lodgingMap)
   );

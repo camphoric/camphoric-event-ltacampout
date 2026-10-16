@@ -1,7 +1,9 @@
-import { year, dates } from './dates.js';
-import { pricingMatrix } from './pricing/pricing.js';
+import type { DateTime } from 'luxon';
 
-const dateFormat = (d) => {
+import { year, dates } from './dates.ts';
+import { pricingMatrix } from './pricing/pricing.ts';
+
+const dateFormat = (d: DateTime) => {
   return d.toFormat("EEEE MMMM d 'at' t");
 };
 

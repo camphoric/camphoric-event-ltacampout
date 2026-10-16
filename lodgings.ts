@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { dates } from './dates.js';
+import { dates } from './dates.ts';
 
 export default {
   root: {

@@ -41,10 +41,13 @@ export const pricingMatrix = {
   },
 };
 
-const transformPricing = () => {
-  const result = {};
+// Prices nested by category, down to a number
+type PriceTree = number | { [key: string]: PriceTree };
 
-  const rf = (obj, labels = []) => {
+const transformPricing = () => {
+  const result: Record<string, number> = {};
+
+  const rf = (obj: PriceTree, labels: string[] = []) => {
     if (typeof obj === 'number') {
       result[labels.join('_')] = obj;
 
