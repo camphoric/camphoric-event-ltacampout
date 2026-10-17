@@ -1,6 +1,6 @@
 {
   "name": "@camphoric/camphoric-event-ltacampout",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Lark Traditional Arts' Jughandle Campout Camphoric event: its import object, organization, reports and bulk registrations.",
   "license": "MIT",
   "repository": {
