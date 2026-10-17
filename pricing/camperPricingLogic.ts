@@ -50,7 +50,7 @@ const getRates = (lodgingIds: LodgingLookup) => ({
 });
 
 const totalSingleDay = (lodgingIds: LodgingLookup) => {
-	const lid = lodgingIds.offsiteday.id;
+  const lid = lodgingIds.offsiteday.id;
 
   return {
     if: [
@@ -69,10 +69,10 @@ export default (lodgingIds: LodgingLookup): PricingLogicItem[] => [
     var: 'tuition',
     exp: getRates(lodgingIds),
   },
-	{
-		var: 'singledaycount',
-		exp: totalSingleDay(lodgingIds),
-	},
+  {
+    var: 'singledaycount',
+    exp: totalSingleDay(lodgingIds),
+  },
   {
     var: 'total',
     exp: {

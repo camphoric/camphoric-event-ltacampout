@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 
 export const lengthInDays = 3;
 
-const today = DateTime.now().setZone("America/Los_Angeles");
+const today = DateTime.now().setZone('America/Los_Angeles');
 
 export let year = today.year;
 
@@ -16,18 +16,18 @@ if (today.month > 9) {
 const getStartDate = () => {
   // Mon - Sun: 1 - 7
 
-  let d = DateTime.fromISO(`${year}-10-01T14:00:00.000-07:00`).setZone("America/Los_Angeles");
+  let d = DateTime.fromISO(`${year}-10-01T14:00:00.000-07:00`).setZone('America/Los_Angeles');
 
   console.log('weekday', d.weekday);
   if (d.weekday === 5) {
     d = d.plus({ days: 7 });
   } else {
-    do { d = d.plus({ days: 1 }) } while (d.weekday !== 5);
+    do { d = d.plus({ days: 1 }); } while (d.weekday !== 5);
     d = d.plus({ days: 7 });
   }
 
   return d.plus({ days: 7 });
-}
+};
 
 const startDate = getStartDate();
 const regEnd = startDate.minus({ days: 1 });

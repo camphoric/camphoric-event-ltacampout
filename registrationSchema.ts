@@ -4,7 +4,7 @@ import { year, dates } from './dates.ts';
 import { pricingMatrix } from './pricing/pricing.ts';
 
 const dateFormat = (d: DateTime) => {
-  return d.toFormat("EEEE MMMM d 'at' t");
+  return d.toFormat('EEEE MMMM d \'at\' t');
 };
 
 export default {
