@@ -49,6 +49,18 @@ test('lodging offers the kinds of camping', async ({ registration }) => {
   ]);
 });
 
+// The spots under each kind (CS 3 Spot A, Lg RV 1, FH Cypress, …) are assigned
+// by the camp, not chosen: choosing a kind opens no dropdown below it.
+test('a kind of camping offers no individual spots to choose', async ({ registration }) => {
+  await registration.open();
+  const camper = registration.camper(1);
+  const [kinds] = await camper.chooseLodging('Tent');
+  for (const kind of kinds) {
+    await camper.chooseLodging(kind);
+    await expect(camper.lodgingLevels(), kind).toHaveCount(1);
+  }
+});
+
 test('a registration missing required answers isn\'t submitted', async ({ page, registration }) => {
   await registration.open();
   await registration.submit();
@@ -76,8 +88,6 @@ test('a registration goes through, paying by check', async ({ page, registration
 });
 
 // Next, the behaviour particular to this camp:
-// (The page object can't yet tell how many lodging levels a choice opens.)
-test.fixme('a kind of camping offers no individual spots to choose', () => {});
 test.fixme('a premium suite is booked with two or more people', () => {});
 test.fixme('"Off Site - Single Day" is priced per day attended', () => {});
 test.fixme('a donation is added to the total', () => {});
