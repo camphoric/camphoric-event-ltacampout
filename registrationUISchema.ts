@@ -27,7 +27,6 @@ export default {
         'age',
         'email',
         'phone',
-        'vaccination_status',
         'lodging',
         '*',
       ],
@@ -45,9 +44,6 @@ export default {
       },
       'phone': {
         'ui:widget': 'PhoneInput'
-      },
-      'vaccination_status': {
-        'ui:widget': 'checkboxes'
       },
 
     },

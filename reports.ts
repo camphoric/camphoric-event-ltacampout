@@ -33,11 +33,6 @@ const reports: Report[] = [
     template: readFile('Camper-Email-List-For-Mailing.j2'),
   },
   {
-    title: 'Vaccination Report',
-    output: 'md',
-    template: readFile('Vaccination-Report.j2'),
-  },
-  {
     title: 'All Campers by Reg Date',
     output: 'md',
     template: readFile('All-Campers-by-Reg-Date.j2'),
