@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/camphoric/camphoric-event-ltacampout/compare/v1.0.1...v1.0.2) (2026-11-12)
+
+
+### Bug Fixes
+
+* **reports:** remove the Vaccination Report ([a12f704](https://github.com/camphoric/camphoric-event-ltacampout/commit/a12f70427f65d5bb0b1dec9f982bde8c56f1377a)), closes [#8](https://github.com/camphoric/camphoric-event-ltacampout/issues/8)
+
 ## [1.0.1](https://github.com/camphoric/camphoric-event-ltacampout/compare/v1.0.0...v1.0.1) (2026-10-20)
 
 
